@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الزَّمَنُ المُلْتَبِس — كرونوغرافيا للرُّوحِ اليَقْظانَة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@400;500;600&family=Scheherazade+New:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0d1a;
+    --ink-2:#111728;
+    --ink-3:#1a2138;
+    --lapis:#1e3a6b;
+    --lapis-deep:#162850;
+    --ivory:#f0e6d2;
+    --ivory-dim:#c9bfa8;
+    --parchment:#e6d9b8;
+    --gold:#c9a24a;
+    --gold-bright:#e8c775;
+    --gold-deep:#9c7a35;
+    --turquoise:#3d7a7a;
+    --turquoise-bright:#5ba3a3;
+    --crimson:#8b2e3c;
+    --ease:cubic-bezier(0.22,1,0.36,1);
+    --ease-deep:cubic-bezier(0.76,0,0.24,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  html,body{background:var(--ink);color:var(--ivory)}
+
+  body{
+    font-family:'Amiri','Scheherazade New',serif;
+    font-weight:400;
+    line-height:1.75;
+    font-size:19px;
+    overflow-x:hidden;
+    cursor:crosshair;
+    min-height:100vh;
+    direction:rtl;
+  }
+
+  ::selection{background:var(--gold);color:var(--ink)}
+
+  /* ═══════════════ AMBIENT ═══════════════ */
+  .ambient{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(ellipse 80% 60% at 85% 25%, rgba(201,162,74,.09) 0%, transparent 60%),
+      radial-gradient(ellipse 90% 70% at 15% 75%, rgba(30,58,107,.3) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 50% 50%, rgba(61,122,122,.05) 0%, transparent 70%),
+      radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(0,0,0,.5) 100%);
+  }
+
+  /* Subtle arabesque pattern overlay */
+  .arabesque{
+    position:fixed;inset:0;z-index:1;pointer-events:none;
+    opacity:.035;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><g fill='none' stroke='%23e8c775' stroke-width='0.6'><circle cx='60' cy='60' r='40'/><circle cx='60' cy='60' r='20'/><path d='M60 20 L80 60 L60 100 L40 60 Z'/><path d='M20 60 L60 40 L100 60 L60 80 Z'/><path d='M60 20 L100 60 L60 100 L20 60 Z' transform='rotate(45 60 60)'/></g></svg>");
+    background-size:180px 180px;
+  }
+
+  .grain{
+    position:fixed;inset:-50%;z-index:2;pointer-events:none;
+    opacity:.06;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grain 8s steps(6) infinite;
+  }
+  @keyframes grain{
+    0%,100%{transform:translate(0,0)}
+    20%{transform:translate(-5%,3%)}
+    40%{transform:translate(3%,-4%)}
+    60%{transform:translate(-2%,5%)}
+    80%{transform:translate(4%,2%)}
+  }
+
+  .vignette{
+    position:fixed;inset:0;z-index:3;pointer-events:none;
+    box-shadow:inset 0 0 200px 20px rgba(0,0,0,.7);
+  }
+
+  /* ═══════════════ INTRO ═══════════════ */
+  .intro{
+    position:fixed;inset:0;z-index:100;
+    background:radial-gradient(ellipse at center, var(--ink-2) 0%, var(--ink) 100%);
+    display:flex;align-items:center;justify-content:center;
+    transition:opacity 1.8s var(--ease), visibility 1.8s var(--ease);
+  }
+  .intro.fade{opacity:0;visibility:hidden;pointer-events:none}
+
+  .intro-inner{
+    text-align:center;max-width:620px;padding:40px;
+    animation:fadeUp 1.8s var(--ease) .3s both;
+  }
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(30px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  .intro-label{
+    font-family:'Reem Kufi',sans-serif;font-size:12px;
+    letter-spacing:.3em;color:var(--gold);
+    margin-bottom:40px;opacity:.85;font-weight:500;
+  }
+
+  .intro-title{
+    font-family:'Aref Ruqaa','Amiri',serif;
+    font-size:clamp(56px,9vw,110px);
+    font-weight:700;line-height:1.1;color:var(--ivory);
+    margin-bottom:24px;letter-spacing:0;
+  }
+  .intro-title .gilt{color:var(--gold-bright)}
+
+  .intro-subtitle{
+    font-size:20px;color:var(--ivory-dim);
+    font-style:italic;margin-bottom:50px;
+    font-family:'Amiri',serif;
+  }
+
+  .intro-warning{
+    font-family:'Reem Kufi',sans-serif;font-size:11px;
+    color:var(--ivory-dim);opacity:.55;margin-bottom:34px;
+    letter-spacing:.18em;
+  }
+
+  .intro-enter{
+    background:transparent;border:1px solid var(--gold);
+    color:var(--ivory);padding:16px 48px;
+    font-family:'Aref Ruqaa',serif;font-size:18px;
+    letter-spacing:.1em;cursor:pointer;
+    transition:all .6s var(--ease);position:relative;overflow:hidden;
+  }
+  .intro-enter::before{
+    content:'';position:absolute;inset:0;
+    background:var(--gold);transform:translateY(100%);
+    transition:transform .6s var(--ease);z-index:-1;
+  }
+  .intro-enter:hover{color:var(--ink);border-color:var(--gold-bright)}
+  .intro-enter:hover::before{transform:translateY(0)}
+
+  .intro-star{
+    width:90px;height:90px;margin:0 auto 36px;opacity:.7;
+    animation:starBreath 4s ease-in-out infinite;
+  }
+  @keyframes starBreath{
+    0%,100%{opacity:.5;transform:rotate(0) scale(1)}
+    50%{opacity:.85;transform:rotate(22.5deg) scale(1.05)}
+  }
+
+  /* ═══════════════ TOPBAR ═══════════════ */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:24px 44px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'Reem Kufi',sans-serif;font-size:11px;
+    letter-spacing:.2em;
+    color:var(--ivory-dim);pointer-events:none;
+    opacity:0;transition:opacity 1.5s var(--ease) 1s;
+    direction:rtl;
+  }
+  .topbar.show{opacity:1}
+  .topbar > *{pointer-events:auto}
+  .topbar .brand span{color:var(--gold);margin:0 8px}
+  .topbar .audio-tog{
+    background:none;border:none;color:var(--ivory-dim);
+    font-family:inherit;font-size:inherit;letter-spacing:inherit;
+    cursor:pointer;display:flex;align-items:center;gap:10px;
+    transition:color .4s var(--ease);
+  }
+  .topbar .audio-tog:hover{color:var(--ivory)}
+  .audio-dot{
+    width:6px;height:6px;border-radius:50%;background:var(--crimson);
+    transition:background .4s var(--ease),box-shadow .4s var(--ease);
+  }
+  .audio-tog.on .audio-dot{
+    background:var(--gold-bright);
+    box-shadow:0 0 8px var(--gold);
+    animation:heartbeat 1.2s ease-in-out infinite;
+  }
+  @keyframes heartbeat{
+    0%,100%{opacity:1}50%{opacity:.5}
+  }
+
+  .progress-line{
+    position:fixed;top:0;right:0;height:1px;
+    background:linear-gradient(270deg,transparent,var(--gold),var(--gold-bright));
+    width:0%;z-index:60;transition:width .1s linear;
+  }
+
+  /* ═══════════════ MAIN ═══════════════ */
+  main{position:relative;z-index:5}
+
+  section{position:relative;padding:0 40px}
+
+  /* ═══════════════ HERO ═══════════════ */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    text-align:center;position:relative;
+    padding-top:120px;padding-bottom:80px;
+  }
+
+  .hero-label{
+    font-family:'Reem Kufi',sans-serif;font-size:11.5px;
+    letter-spacing:.28em;color:var(--gold);
+    margin-bottom:24px;opacity:.9;font-weight:500;
+  }
+
+  .hero-clock-wrap{
+    position:relative;width:min(540px,80vw);height:min(540px,80vw);
+    margin:10px auto 30px;
+  }
+  .hero-clock{width:100%;height:100%}
+
+  .hero-title{
+    font-family:'Aref Ruqaa',serif;
+    font-size:clamp(72px,15vw,200px);
+    font-weight:700;line-height:1;
+    color:var(--ivory);
+    margin-top:-30px;
+    position:relative;z-index:2;
+    mix-blend-mode:screen;
+    letter-spacing:0;
+  }
+  .hero-title .amp{
+    color:var(--gold-bright);
+    opacity:.85;
+    font-family:'Amiri',serif;
+    font-size:.7em;
+    padding:0 .1em;
+    vertical-align:middle;
+  }
+
+  .hero-sub{
+    font-size:clamp(18px,1.8vw,24px);
+    font-style:italic;color:var(--ivory-dim);
+    margin-top:24px;font-family:'Amiri',serif;
+  }
+
+  .hero-byline{
+    font-family:'Reem Kufi',sans-serif;font-size:11px;
+    letter-spacing:.25em;color:var(--ivory-dim);
+    margin-top:40px;opacity:.55;
+  }
+
+  .scroll-cue{
+    position:absolute;bottom:40px;left:50%;
+    transform:translateX(-50%);
+    font-family:'Reem Kufi',sans-serif;font-size:11px;
+    letter-spacing:.3em;color:var(--ivory-dim);
+    opacity:.6;
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+    animation:breathe 3s ease-in-out infinite;
+  }
+  @keyframes breathe{
+    0%,100%{opacity:.3;transform:translate(-50%,0)}
+    50%{opacity:.7;transform:translate(-50%,6px)}
+  }
+  .scroll-cue::after{
+    content:'';width:1px;height:44px;
+    background:linear-gradient(to bottom,var(--gold),transparent);
+  }
+
+  /* ═══════════════ CHAPTER / TEXT ═══════════════ */
+  .chapter{
+    min-height:100vh;
+    max-width:1200px;margin:0 auto;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:140px 40px;position:relative;
+  }
+
+  .chap-num{
+    font-family:'Reem Kufi',sans-serif;font-size:12px;
+    letter-spacing:.3em;color:var(--gold);
+    margin-bottom:24px;font-weight:500;
+  }
+  .chap-num .bar{
+    display:inline-block;width:40px;height:1px;background:var(--gold);
+    vertical-align:middle;margin-left:16px;opacity:.6;
+  }
+
+  .chap-title{
+    font-family:'Aref Ruqaa',serif;
+    font-size:clamp(44px,6.5vw,88px);
+    font-weight:700;line-height:1.2;
+    margin-bottom:48px;color:var(--ivory);
+    letter-spacing:0;
+  }
+  .chap-title .gilt{color:var(--gold-bright)}
+
+  .chap-body{
+    font-size:clamp(20px,1.7vw,25px);
+    line-height:1.95;color:var(--ivory);
+    max-width:680px;
+    font-weight:400;
+  }
+  .chap-body p + p{margin-top:1.4em}
+  .chap-body em{color:var(--gold-bright);font-style:italic}
+  .chap-body .dc{
+    float:right;font-size:4.5em;line-height:.85;
+    padding:8px 0 0 18px;color:var(--gold);font-weight:700;
+    font-family:'Aref Ruqaa',serif;
+  }
+
+  .two-col{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:80px;align-items:center;
+  }
+
+  .margin-note{
+    font-family:'Reem Kufi',sans-serif;font-size:11px;
+    letter-spacing:.2em;color:var(--ivory-dim);
+    line-height:1.9;opacity:.6;
+  }
+  .margin-note::before{
+    content:'۞';color:var(--gold);margin-left:10px;
+    font-family:'Amiri',serif;font-size:1.3em;
+  }
+
+  /* Quranic verse styling */
+  .verse{
+    font-family:'Amiri Quran','Amiri',serif;
+    font-size:clamp(26px,3vw,36px);
+    color:var(--gold-bright);
+    text-align:center;
+    line-height:2.2;
+    margin:30px auto;
+    max-width:760px;
+    font-weight:400;
+  }
+  .verse::before,.verse::after{
+    content:'﴿';color:var(--gold);opacity:.6;
+    margin:0 12px;font-size:.85em;
+  }
+  .verse::after{content:'﴾'}
+  .verse-src{
+    font-family:'Reem Kufi',sans-serif;font-size:11px;
+    letter-spacing:.3em;color:var(--gold);
+    margin-top:14px;display:block;opacity:.7;
+  }
+
+  /* Memory grid */
+  .memory-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:60px 44px;margin-top:60px;
+  }
+  .memory-frag{
+    opacity:0;filter:blur(20px);transform:translateY(40px);
+    transition:all 1.4s var(--ease);
+  }
+  .memory-frag.on{opacity:1;filter:blur(0);transform:translateY(0)}
+  .memory-frag .frag-tag{
+    font-family:'Reem Kufi',sans-serif;font-size:10.5px;
+    letter-spacing:.25em;color:var(--gold);
+    margin-bottom:14px;opacity:.75;
+  }
+  .memory-frag p{
+    font-style:italic;color:var(--ivory);font-size:18px;
+    line-height:1.8;font-family:'Amiri',serif;
+  }
+  .memory-frag .frag-cite{
+    font-family:'Reem Kufi',sans-serif;font-size:10px;
+    letter-spacing:.18em;color:var(--ivory-dim);
+    margin-top:16px;opacity:.55;
+  }
+
+  /* STRETCH WORD — kashida-style horizontal */
+  .stretch-wrap{
+    min-height:120vh;
+    display:flex;flex-direction:column;align-items:center;
+    justify-content:center;position:relative;
+  }
+  .stretch-word{
+    font-family:'Aref Ruqaa','Amiri',serif;
+    font-size:clamp(80px,16vw,220px);
+    font-weight:700;
+    color:var(--ivory);line-height:1.2;
+    display:inline-block;
+    transform-origin:center center;
+    transition:transform .2s linear;
+    will-change:transform;
+    white-space:nowrap;
+    padding:0 .2em;
+  }
+  .stretch-word .accent{color:var(--gold-bright)}
+
+  .stretch-caption{
+    margin-top:80px;max-width:620px;text-align:center;
+    font-size:20px;font-style:italic;color:var(--ivory-dim);
+    line-height:1.9;font-family:'Amiri',serif;
+  }
+  .stretch-caption cite{
+    display:block;margin-top:18px;
+    font-family:'Reem Kufi',sans-serif;font-size:11px;
+    letter-spacing:.3em;color:var(--gold);
+    font-style:normal;
+  }
+
+  /* RELATIVE — two clocks */
+  .relative-section{
+    min-height:110vh;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    padding:140px 40px;
+  }
+  .relative-pair{
+    display:grid;grid-template-columns:1fr auto 1fr;
+    gap:60px;align-items:center;max-width:1100px;width:100%;
+    margin-top:60px;
+  }
+  .rel-clock-wrap{
+    aspect-ratio:1;position:relative;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .rel-clock{width:80%;height:80%}
+  .rel-label{
+    position:absolute;bottom:-16px;left:50%;
+    transform:translateX(-50%);
+    font-family:'Reem Kufi',sans-serif;font-size:11px;
+    letter-spacing:.22em;color:var(--gold);
+    white-space:nowrap;
+  }
+  .rel-divider{
+    width:1px;height:200px;
+    background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+    opacity:.5;
+  }
+  .rel-text{
+    text-align:center;max-width:620px;margin:80px auto 0;
+    font-size:20px;font-style:italic;color:var(--ivory);
+    line-height:1.9;font-family:'Amiri',serif;
+  }
+  .rel-text em{color:var(--gold-bright);font-style:italic}
+
+  /* NOW */
+  .now-section{
+    min-height:150vh;position:relative;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    padding:140px 40px;
+  }
+  .now-word{
+    font-family:'Aref Ruqaa','Amiri',serif;
+    font-size:clamp(140px,26vw,400px);
+    font-weight:700;
+    color:var(--ivory);
+    line-height:1.1;display:inline-block;
+    transform-origin:center center;
+    will-change:transform;
+    transition:transform .15s linear;
+    padding:0 .2em;
+  }
+  .now-word .gilt{color:var(--gold-bright)}
+
+  .now-text{
+    max-width:680px;margin-top:80px;text-align:center;
+    font-size:clamp(19px,1.6vw,22px);
+    font-style:italic;color:var(--ivory-dim);line-height:1.9;
+    font-family:'Amiri',serif;
+  }
+  .now-text em{color:var(--ivory);font-style:italic}
+
+  /* DUALITY */
+  .duality{
+    min-height:110vh;
+    display:flex;align-items:center;
+    padding:140px 40px;max-width:1200px;margin:0 auto;
+  }
+  .duality-grid{
+    display:grid;grid-template-columns:1fr 1px 1fr;
+    gap:80px;width:100%;align-items:start;
+  }
+  .duality-col h3{
+    font-family:'Aref Ruqaa',serif;
+    font-size:clamp(44px,5.5vw,72px);
+    font-weight:700;
+    margin-bottom:26px;
+    color:var(--ivory);letter-spacing:0;
+  }
+  .duality-col .tag{
+    font-family:'Reem Kufi',sans-serif;font-size:11.5px;
+    letter-spacing:.28em;color:var(--gold);
+    margin-bottom:12px;font-weight:500;
+  }
+  .duality-col p{
+    font-size:19px;color:var(--ivory);line-height:1.9;
+    font-family:'Amiri',serif;
+  }
+  .duality-col p em{color:var(--gold-bright);font-style:italic}
+  .duality-divider{
+    background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+    opacity:.4;height:100%;min-height:280px;
+  }
+
+  /* EPILOGUE */
+  .epilogue{
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    padding:80px 40px;text-align:center;position:relative;
+  }
+  .epilogue-clock{
+    width:min(280px,40vw);height:min(280px,40vw);
+    margin-bottom:50px;opacity:.75;
+  }
+  .epilogue-line{
+    font-family:'Aref Ruqaa',serif;
+    font-size:clamp(30px,4vw,52px);
+    font-weight:700;color:var(--ivory);
+    line-height:1.4;max-width:820px;
+  }
+  .epilogue-line em{color:var(--gold-bright);font-style:italic;font-family:'Amiri',serif}
+  .epilogue-credits{
+    margin-top:110px;
+    font-family:'Reem Kufi',sans-serif;font-size:11px;
+    letter-spacing:.3em;color:var(--ivory-dim);
+    opacity:.6;line-height:2.3;
+  }
+  .epilogue-credits .em-bar{
+    display:block;width:60px;height:1px;
+    background:var(--gold);margin:0 auto 26px;opacity:.6;
+  }
+
+  /* GHOST CLOCKS (PARALLAX) */
+  .ghost-layer{
+    position:absolute;inset:0;pointer-events:none;
+    overflow:hidden;z-index:1;
+  }
+  .ghost{
+    position:absolute;opacity:.12;
+    will-change:transform;
+  }
+  .ghost svg{width:100%;height:100%;display:block}
+
+  /* REVEAL */
+  .reveal{
+    opacity:0;transform:translateY(40px);
+    filter:blur(6px);
+    transition:opacity 1.4s var(--ease),
+               transform 1.4s var(--ease),
+               filter 1.4s var(--ease);
+  }
+  .reveal.on{opacity:1;transform:translateY(0);filter:blur(0)}
+  .reveal.delay-1{transition-delay:.15s}
+  .reveal.delay-2{transition-delay:.3s}
+  .reveal.delay-3{transition-delay:.45s}
+
+  /* CLOCK STYLES */
+  .melt-clock text{
+    font-family:'Amiri','Scheherazade New',serif;
+    fill:var(--gold);font-weight:700;
+  }
+  .clock-ring-outer{fill:none;stroke:var(--gold);opacity:.75}
+  .clock-ring-mid{fill:none;stroke:var(--gold);opacity:.3}
+  .clock-inner{fill:rgba(201,162,74,.04)}
+  .clock-tick{stroke:var(--gold);opacity:.55}
+  .clock-tick-major{stroke:var(--gold-bright);opacity:.85}
+  .hand-hour{stroke:var(--ivory);stroke-linecap:round}
+  .hand-min{stroke:var(--ivory);stroke-linecap:round;opacity:.9}
+  .hand-sec{stroke:var(--gold-bright);stroke-linecap:round;opacity:.95}
+  .pivot{fill:var(--gold-bright)}
+  .star-8{fill:none;stroke:var(--gold);opacity:.35;stroke-width:.8}
+  .star-8-inner{fill:none;stroke:var(--turquoise-bright);opacity:.3;stroke-width:.6}
+
+  @keyframes rotate-h{to{transform:rotate(360deg)}}
+  .spin-hour{animation:rotate-h 720s linear infinite;transform-origin:center}
+  .spin-min{animation:rotate-h 60s linear infinite;transform-origin:center}
+  .spin-sec{animation:rotate-h 6s linear infinite;transform-origin:center}
+  .spin-fast{animation:rotate-h 2s linear infinite;transform-origin:center}
+  .spin-slow{animation:rotate-h 3600s linear infinite;transform-origin:center}
+  @keyframes rotate-star{to{transform:rotate(45deg)}}
+  .star-spin{animation:rotate-star 40s linear infinite;transform-origin:center}
+
+  /* RESPONSIVE */
+  @media(max-width:860px){
+    section,.chapter,.relative-section,.now-section,.duality,.epilogue{padding-left:24px;padding-right:24px}
+    .topbar{padding:18px 24px}
+    .two-col{grid-template-columns:1fr;gap:40px}
+    .memory-grid{grid-template-columns:1fr;gap:40px}
+    .relative-pair{grid-template-columns:1fr;gap:80px}
+    .rel-divider{width:140px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto}
+    .duality-grid{grid-template-columns:1fr;gap:60px}
+    .duality-divider{width:100%;height:1px;min-height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+      animation-duration:.01ms!important;
+      transition-duration:.01ms!important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- LAYERS -->
+<div class="ambient"></div>
+<div class="arabesque"></div>
+<div class="grain"></div>
+<div class="vignette"></div>
+
+<!-- SHARED SVG DEFS -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="melt-1" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="0" id="disp-1"/>
+    </filter>
+    <filter id="melt-2" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="0" id="disp-2"/>
+    </filter>
+    <filter id="melt-3" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="0" id="disp-3"/>
+    </filter>
+    <filter id="melt-4" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="2" seed="19" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="0" id="disp-4"/>
+    </filter>
+    <filter id="melt-5" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="23" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="0" id="disp-5"/>
+    </filter>
+    <filter id="melt-6" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="31" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="0" id="disp-6"/>
+    </filter>
+    <filter id="melt-7" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="2" seed="41" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="0" id="disp-7"/>
+    </filter>
+
+    <!-- Islamic 8-pointed star (Rub el Hizb / Khatam) -->
+    <symbol id="star8" viewBox="-50 -50 100 100">
+      <g class="star-spin">
+        <rect class="star-8" x="-34" y="-34" width="68" height="68"/>
+        <rect class="star-8" x="-34" y="-34" width="68" height="68" transform="rotate(45)"/>
+        <rect class="star-8-inner" x="-22" y="-22" width="44" height="44"/>
+        <rect class="star-8-inner" x="-22" y="-22" width="44" height="44" transform="rotate(45)"/>
+        <circle class="star-8" r="10"/>
+      </g>
+    </symbol>
+
+    <!-- Clock face with Arabic-Indic numerals + Islamic ornament -->
+    <symbol id="clockface" viewBox="-150 -150 300 300">
+      <!-- Outer rings -->
+      <circle class="clock-ring-outer" r="142" stroke-width=".8"/>
+      <circle class="clock-ring-mid" r="138" stroke-width=".5"/>
+      <circle class="clock-inner" r="134"/>
+      <circle class="clock-ring-outer" r="134" stroke-width=".4" opacity=".35"/>
+
+      <!-- Central 8-pointed star ornament -->
+      <use href="#star8" x="-35" y="-35" width="70" height="70" opacity=".6"/>
+
+      <!-- Decorative dots between numerals -->
+      <g fill="var(--gold)" opacity=".55">
+        <circle r="1.2" cx="0" cy="-120" transform="rotate(15)"/>
+        <circle r="1.2" cx="0" cy="-120" transform="rotate(45)"/>
+        <circle r="1.2" cx="0" cy="-120" transform="rotate(75)"/>
+        <circle r="1.2" cx="0" cy="-120" transform="rotate(105)"/>
+        <circle r="1.2" cx="0" cy="-120" transform="rotate(135)"/>
+        <circle r="1.2" cx="0" cy="-120" transform="rotate(165)"/>
+        <circle r="1.2" cx="0" cy="-120" transform="rotate(195)"/>
+        <circle r="1.2" cx="0" cy="-120" transform="rotate(225)"/>
+        <circle r="1.2" cx="0" cy="-120" transform="rotate(255)"/>
+        <circle r="1.2" cx="0" cy="-120" transform="rotate(285)"/>
+        <circle r="1.2" cx="0" cy="-120" transform="rotate(315)"/>
+        <circle r="1.2" cx="0" cy="-120" transform="rotate(345)"/>
+      </g>
+
+      <!-- Arabic-Indic numerals -->
+      <g font-size="22" text-anchor="middle" dominant-baseline="central">
+        <text x="0" y="-112">١٢</text>
+        <text x="56" y="-97">١</text>
+        <text x="97" y="-56">٢</text>
+        <text x="112" y="0">٣</text>
+        <text x="97" y="56">٤</text>
+        <text x="56" y="97">٥</text>
+        <text x="0" y="112">٦</text>
+        <text x="-56" y="97">٧</text>
+        <text x="-97" y="56">٨</text>
+        <text x="-112" y="0">٩</text>
+        <text x="-97" y="-56">١٠</text>
+        <text x="-56" y="-97">١١</text>
+      </g>
+
+      <!-- Major hour ticks -->
+      <g class="clock-tick-major" stroke-width="1.2">
+        <line x1="0" y1="-134" x2="0" y2="-124"/>
+        <line x1="0" y1="-134" x2="0" y2="-124" transform="rotate(30)"/>
+        <line x1="0" y1="-134" x2="0" y2="-124" transform="rotate(60)"/>
+        <line x1="0" y1="-134" x2="0" y2="-124" transform="rotate(90)"/>
+        <line x1="0" y1="-134" x2="0" y2="-124" transform="rotate(120)"/>
+        <line x1="0" y1="-134" x2="0" y2="-124" transform="rotate(150)"/>
+        <line x1="0" y1="-134" x2="0" y2="-124" transform="rotate(180)"/>
+        <line x1="0" y1="-134" x2="0" y2="-124" transform="rotate(210)"/>
+        <line x1="0" y1="-134" x2="0" y2="-124" transform="rotate(240)"/>
+        <line x1="0" y1="-134" x2="0" y2="-124" transform="rotate(270)"/>
+        <line x1="0" y1="-134" x2="0" y2="-124" transform="rotate(300)"/>
+        <line x1="0" y1="-134" x2="0" y2="-124" transform="rotate(330)"/>
+      </g>
+    </symbol>
+
+    <symbol id="clockhands" viewBox="-150 -150 300 300">
+      <g class="spin-hour"><line class="hand-hour" x1="0" y1="6" x2="0" y2="-60" stroke-width="2.8"/></g>
+      <g class="spin-min"><line class="hand-min" x1="0" y1="10" x2="0" y2="-95" stroke-width="1.8"/></g>
+      <g class="spin-sec"><line class="hand-sec" x1="0" y1="18" x2="0" y2="-108" stroke-width=".9"/></g>
+      <circle class="pivot" r="3"/>
+    </symbol>
+
+    <symbol id="clockhands-fast" viewBox="-150 -150 300 300">
+      <g class="spin-hour"><line class="hand-hour" x1="0" y1="6" x2="0" y2="-60" stroke-width="2.8"/></g>
+      <g class="spin-min"><line class="hand-min" x1="0" y1="10" x2="0" y2="-95" stroke-width="1.8"/></g>
+      <g class="spin-fast"><line class="hand-sec" x1="0" y1="18" x2="0" y2="-108" stroke-width=".9"/></g>
+      <circle class="pivot" r="3"/>
+    </symbol>
+
+    <symbol id="clockhands-slow" viewBox="-150 -150 300 300">
+      <g class="spin-hour"><line class="hand-hour" x1="0" y1="6" x2="0" y2="-60" stroke-width="2.8"/></g>
+      <g class="spin-min"><line class="hand-min" x1="0" y1="10" x2="0" y2="-95" stroke-width="1.8"/></g>
+      <g class="spin-slow"><line class="hand-sec" x1="0" y1="18" x2="0" y2="-108" stroke-width=".9"/></g>
+      <circle class="pivot" r="3"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- INTRO -->
+<div class="intro" id="intro">
+  <div class="intro-inner">
+    <svg class="intro-star" viewBox="-50 -50 100 100">
+      <use href="#star8"/>
+    </svg>
+    <p class="intro-label">كرونوسفير · المُجلَّد السابع</p>
+    <h1 class="intro-title">الزَّمَنُ <span class="gilt">المُلْتَبِس</span></h1>
+    <p class="intro-subtitle">كرونوغرافيا للرُّوحِ اليَقْظانَة</p>
+    <p class="intro-warning">هذا العملُ يَتَنَفَّسُ بالصَّوت · يُنصَحُ بسماعاتِ الأُذُن</p>
+    <button class="intro-enter" id="enterBtn">ادخُلِ السَّاعات</button>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar" id="topbar">
+  <div class="brand">كرونوسفير<span>·</span>المُجلَّد السابع<span>·</span>الزَّمَنُ المُلْتَبِس</div>
+  <button class="audio-tog on" id="audioToggle" aria-label="كتم الصوت">
+    <span class="audio-dot"></span><span class="audio-label">الصَّوت · مُشَغَّل</span>
+  </button>
+</div>
+<div class="progress-line" id="progress"></div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="ghost-layer" aria-hidden="true">
+      <div class="ghost" data-speed=".15" style="top:8%;right:6%;width:120px;height:120px">
+        <svg viewBox="-150 -150 300 300" filter="url(#melt-6)"><use href="#clockface"/></svg>
+      </div>
+      <div class="ghost" data-speed=".25" style="top:15%;left:8%;width:90px;height:90px">
+        <svg viewBox="-150 -150 300 300" filter="url(#melt-7)"><use href="#clockface"/></svg>
+      </div>
+      <div class="ghost" data-speed=".1" style="bottom:18%;right:12%;width:140px;height:140px">
+        <svg viewBox="-150 -150 300 300" filter="url(#melt-6)"><use href="#clockface"/></svg>
+      </div>
+      <div class="ghost" data-speed=".3" style="bottom:12%;left:14%;width:70px;height:70px">
+        <svg viewBox="-150 -150 300 300" filter="url(#melt-7)"><use href="#clockface"/></svg>
+      </div>
+    </div>
+
+    <div class="hero-label">كرونوسفير · عَمَلٌ تَرْكيبيٌّ في نَفَسٍ واحد</div>
+    <div class="hero-clock-wrap">
+      <svg class="hero-clock melt-clock" viewBox="-150 -150 300 300" data-melt-target="disp-1">
+        <g filter="url(#melt-1)">
+          <use href="#clockface"/>
+        </g>
+        <use href="#clockhands"/>
+      </svg>
+    </div>
+    <h1 class="hero-title">الزَّمَن<span class="amp">و</span>المُلْتَبِس</h1>
+    <p class="hero-sub">السَّاعاتُ التي بَيْنَ السَّاعات</p>
+    <p class="hero-byline">١٤٤٧هـ / ٢٠٢٦م · كرونوغرافيا في سَبْعِ حَرَكات</p>
+
+    <div class="scroll-cue">انْزِلْ</div>
+  </section>
+
+  <!-- PRELUDE -->
+  <section class="chapter" style="text-align:center">
+    <div class="reveal">
+      <p class="chap-num"><span class="bar"></span>تَمْهِيد</p>
+      <p class="verse">
+        وَالْعَصْرِ ۙ إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ
+        <span class="verse-src">سورة العصر · ١ – ٢</span>
+      </p>
+      <p class="chap-body" style="max-width:740px;margin:50px auto 0;font-size:clamp(22px,2vw,28px);font-style:italic">
+        <span class="dc">ال</span>زَّمَنُ، ذلك الرَّاوي الأَعْظَم، يَكْتُبُنا بِلُغَةٍ لَمْ نَتَعَلَّمْ بَعْدُ قِراءَتَها.
+        نَحْنُ شُخُوصُ جُمْلَةٍ لَنْ نُتِمَّها. نَسْتَشِيرُ السَّاعاتِ كما يَسْتَشِيرُ
+        الأَعْمَى النَّوافِذَ — لا طَلَبًا للمَنْظَر، بَلْ <em>لإشاعَةِ الضَّوء</em>.
+      </p>
+      <p class="margin-note" style="margin-top:60px">من مَلَفَّاتِ الجَماعة</p>
+    </div>
+  </section>
+
+  <!-- I. THE TICK -->
+  <section class="chapter">
+    <div class="ghost-layer" aria-hidden="true">
+      <div class="ghost" data-speed=".2" style="top:10%;left:4%;width:180px;height:180px;opacity:.09">
+        <svg viewBox="-150 -150 300 300" filter="url(#melt-6)"><use href="#clockface"/></svg>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="reveal">
+        <p class="chap-num"><span class="bar"></span>الحَرَكَة الأُولى · الدَّقَّةُ والحِيلَة</p>
+        <h2 class="chap-title">كُلُّ ساعَةٍ<br><span class="gilt">طَقْسٌ جَماعيّ.</span></h2>
+        <div class="chap-body">
+          <p>
+            اتِّفاقٌ بَيْنَنا على التَّظاهُر. يَتَحَرَّكُ عَقْرَبُ الثَّواني،
+            لكنَّ الثَّوانِيَ لا وُجُودَ لها — إنَّها زِيٌّ أَلْبَسْناه
+            نَهْرًا حتَّى نُصْدِرَ عَلَيْهِ الأَوامِر.
+          </p>
+          <p>
+            تَأمَّلْ: أَوَّلُ السَّاعاتِ المِيكانيكِيَّةِ كانَت تَدُقُّ
+            عند السَّاعَةِ فَقَط. لَمْ يَكُنْ أَحَدٌ قَدْ تَخَيَّلَ الدَّقائِقَ بَعْد.
+            اخْتُرِعَت <em>الدَّقيقَةُ</em> في القَرْنِ الرَّابِعَ عَشَر،
+            و<em>الثَّانِيَةُ</em> في السَّادِسَ عَشَر. قَبْلَ هذَيْنِ
+            الاخْتِراعَيْن، ماذا كان النَّاسُ يَفْعَلون بالصَّمْتِ بَيْنَ الأَجْراس؟
+          </p>
+          <p>كانوا يَحْيَوْن. وهذا فِعْلٌ لَمْ تَتَعَلَّمْهُ السَّاعَةُ بَعْد.</p>
+        </div>
+        <p class="margin-note" style="margin-top:48px">شَذْرَة · من دَفاتِرِ الحَقْل، ج. ٢</p>
+      </div>
+
+      <div class="reveal delay-2" style="justify-self:center">
+        <svg class="melt-clock" viewBox="-150 -150 300 300" style="width:min(380px,60vw);height:auto" data-melt-target="disp-2">
+          <g filter="url(#melt-2)">
+            <use href="#clockface"/>
+          </g>
+          <use href="#clockhands"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- II. DURÉE / الدَّيْمُومَة -->
+  <section class="stretch-wrap" id="dureeSection">
+    <div class="ghost-layer" aria-hidden="true">
+      <div class="ghost" data-speed=".35" style="top:20%;right:5%;width:110px;height:110px;opacity:.1">
+        <svg viewBox="-150 -150 300 300" filter="url(#melt-7)"><use href="#clockface"/></svg>
+      </div>
+      <div class="ghost" data-speed=".15" style="bottom:15%;left:8%;width:130px;height:130px;opacity:.1">
+        <svg viewBox="-150 -150 300 300" filter="url(#melt-6)"><use href="#clockface"/></svg>
+      </div>
+    </div>
+
+    <div class="reveal" style="text-align:center;margin-bottom:40px">
+      <p class="chap-num"><span class="bar"></span>الحَرَكَة الثَّانِيَة · الدَّيْمُومَة</p>
+    </div>
+
+    <div class="stretch-word" id="stretchWord" aria-label="الدَّيْمُومَة">
+      الدَّيْمُو<span class="accent">مَـة</span>
+    </div>
+
+    <div class="stretch-caption reveal delay-1">
+      <em>الزَّمَنُ المَعِيشُ لا يُقاس. يَمْتَدُّ، يَنْكَمِش، يَنْسَكِب.
+      الحُمَّى تَدومُ قَرْنًا. القُبْلَةُ تَنْتَهي قَبْلَ أَنْ تَبْدَأ.
+      الأَدَواتُ المُضْبوطَةُ على غرينويتش لا تَمْتَلِكُ لُغَةً لِهذا.</em>
+      <cite>مُقْتَبَسٌ من برغسون · ١٨٨٩</cite>
+    </div>
+  </section>
+
+  <!-- III. MEMORY -->
+  <section class="chapter">
+    <div class="reveal">
+      <p class="chap-num"><span class="bar"></span>الحَرَكَة الثَّالِثَة · ذاكِرَةٌ تَطْفُو إلى السَّطْح</p>
+      <h2 class="chap-title">ما يَحْفَظُهُ الجَسَد،<br><span class="gilt">تَنْساهُ السَّاعَة.</span></h2>
+      <div class="chap-body" style="max-width:740px">
+        <p>
+          الشَّمُّ هُوَ المُؤَرِّخُ الأَوَّل. اللَّمْسُ الثَّاني. البَصَرُ يَصِلُ
+          مُتَأَخِّرًا ويَنْسِبُ الفَضْلَ إلى نَفْسِه. الماضي لا يُخَزَّن —
+          بَلْ <em>يُعادُ تَجْميعُه</em> في كُلِّ مَرَّةٍ نَنْظُرُ إلَيْه،
+          مَتْحَفٌ مُخْتَلِفٌ بالاسْمِ نَفْسِه.
+        </p>
+      </div>
+    </div>
+
+    <div class="memory-grid">
+      <div class="memory-frag">
+        <p class="frag-tag">١ · شَمِّيَّة</p>
+        <p>رائِحَةُ المَطَرِ على إسْمَنْتِ الصَّيْف — وفَوْرًا شِقَّةُ دِمَشْق، النَّافِذَةُ المَكْسورَة، يَدا جَدَّتي في الصَّابون.</p>
+        <p class="frag-cite">— المُجيب ١٧، العُمْر ٥٤</p>
+      </div>
+      <div class="memory-frag">
+        <p class="frag-tag">٢ · لَمْسِيَّة</p>
+        <p>خُشونَةُ ياقَةِ مِعْطَفٍ صُوفيٍّ بِعَيْنِها. إحْدى وثَلاثُون سَنَةً تَنْهارُ في ظَهيرَةٍ بُنِّيَّةٍ واحِدَة.</p>
+        <p class="frag-cite">— المُجيبَة ٠٤، العُمْر ٣٩</p>
+      </div>
+      <div class="memory-frag">
+        <p class="frag-tag">٣ · سَمْعِيَّة</p>
+        <p>بابٌ يُغْلَقُ على بُعْدِ غُرْفَتَيْن. أنا في الثَّامِنَة. أُمِّي على قَيْدِ الحياة. لَنْ تَكونَ بَعْدَ تِسْعينَ ثانِيَة.</p>
+        <p class="frag-cite">— المُجيب ٢٢، العُمْر ٦٧</p>
+      </div>
+      <div class="memory-frag">
+        <p class="frag-tag">٤ · ذَوْقِيَّة</p>
+        <p>عَضَّةٌ واحِدَةٌ من كُمَّثْرَى مَسْروقَةٍ من شَجَرَةِ الجار. أَتَذَوَّقُ خَوْفَ أَنْ أُضْبَط. الخَوْفَ، لا الكُمَّثْرَى.</p>
+        <p class="frag-cite">— المُجيبَة ١١، العُمْر ٧١</p>
+      </div>
+      <div class="memory-frag">
+        <p class="frag-tag">٥ · حَرَكِيَّة</p>
+        <p>زاوِيَةُ الشَّمْسِ بِعَيْنِها عَبْرَ النَّافِذَةِ الشَّرْقِيَّة. أُدِيرُ وَجْهي إلَيْها وأَنا في الرَّابِعَة، لَمْ أَخَفْ بَعْدُ مِنْ شَيْء.</p>
+        <p class="frag-cite">— المُجيب ٠٨، العُمْر ٤٦</p>
+      </div>
+      <div class="memory-frag">
+        <p class="frag-tag">٦ · باطِنِيَّة</p>
+        <p>حُزْنٌ مُفاجِئٌ غَيْرُ مُفَسَّرٍ عِنْدَ رائِحَةِ نِشارَةِ الخَشَب. لا حَدَثَ مُرْتَبِط. فَقَط طَقْسُ شُعورٍ، هَبَّ من ساحِلٍ قَدْ نَسِيتُه.</p>
+        <p class="frag-cite">— المُجيبَة ٢٩، العُمْر ٣٣</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IV. RELATIVE -->
+  <section class="relative-section">
+    <div class="ghost-layer" aria-hidden="true">
+      <div class="ghost" data-speed=".12" style="top:8%;right:45%;width:100px;height:100px;opacity:.08">
+        <svg viewBox="-150 -150 300 300" filter="url(#melt-7)"><use href="#clockface"/></svg>
+      </div>
+    </div>
+
+    <div class="reveal" style="text-align:center;max-width:820px">
+      <p class="chap-num"><span class="bar"></span>الحَرَكَة الرَّابِعَة · أَوْزانٌ نِسْبِيَّة</p>
+      <h2 class="chap-title">السَّاعَةُ في الجَبَل<br><span class="gilt">أَسْرَعُ من السَّاعَةِ في الوادي.</span></h2>
+
+      <p class="verse" style="margin-top:60px">
+        يُدَبِّرُ الأَمْرَ مِنَ السَّمَاءِ إِلَى الْأَرْضِ ثُمَّ يَعْرُجُ إِلَيْهِ فِي يَوْمٍ كَانَ مِقْدَارُهُ أَلْفَ سَنَةٍ مِمَّا تَعُدُّونَ
+        <span class="verse-src">سورة السَّجْدَة · ٥</span>
+      </p>
+    </div>
+
+    <div class="relative-pair reveal delay-1">
+      <div class="rel-clock-wrap">
+        <svg class="rel-clock melt-clock" viewBox="-150 -150 300 300" data-melt-target="disp-3">
+          <g filter="url(#melt-3)">
+            <use href="#clockface"/>
+          </g>
+          <use href="#clockhands-slow"/>
+        </svg>
+        <span class="rel-label">عند سَطْحِ البَحْر · أَبْطَأ</span>
+      </div>
+      <div class="rel-divider"></div>
+      <div class="rel-clock-wrap">
+        <svg class="rel-clock melt-clock" viewBox="-150 -150 300 300" data-melt-target="disp-4">
+          <g filter="url(#melt-4)">
+            <use href="#clockface"/>
+          </g>
+          <use href="#clockhands-fast"/>
+        </svg>
+        <span class="rel-label">في القِمَم · أَسْرَع</span>
+      </div>
+    </div>
+
+    <div class="rel-text reveal delay-2">
+      الفَرْقُ حَقيقيٌّ وقابِلٌ للقِياس: نَحْوَ ثَلاثينَ نانو ثانِيَةً في اليَوْم
+      بَيْنَ قَدَمَيْكَ وجُمْجُمَتِك. أَنْتَ خِلاف. أَنْتَ
+      <em>الجِدالُ بَيْنَ ساعَتَيْن</em> تَأْبَيانِ أنْ تَتَصافَحا.
+    </div>
+  </section>
+
+  <!-- V. NOW / الآن -->
+  <section class="now-section" id="nowSection">
+    <div class="ghost-layer" aria-hidden="true">
+      <div class="ghost" data-speed=".2" style="top:14%;right:6%;width:80px;height:80px;opacity:.1">
+        <svg viewBox="-150 -150 300 300" filter="url(#melt-6)"><use href="#clockface"/></svg>
+      </div>
+      <div class="ghost" data-speed=".25" style="bottom:14%;left:6%;width:100px;height:100px;opacity:.1">
+        <svg viewBox="-150 -150 300 300" filter="url(#melt-7)"><use href="#clockface"/></svg>
+      </div>
+    </div>
+
+    <div class="reveal" style="text-align:center;margin-bottom:30px">
+      <p class="chap-num"><span class="bar"></span>الحَرَكَة الخامِسَة · الحاضِرُ المَظْنون</p>
+    </div>
+
+    <div class="now-word" id="nowWord" aria-label="الآن">
+      ال<span class="gilt">آ</span>ن
+    </div>
+
+    <div class="now-text reveal delay-1">
+      <em>الحاضِرُ الذي تَسْكُنُه هو في الحَقيقَةِ ذاكِرَة.</em>
+      حينَ يَصِلُ المُنَبِّهُ إلى الوَعْي، يكونُ قَدْ شاخَ ثَمانينَ إلى مِئَتَيْ
+      مِلِّي ثانِيَة. أَنْتَ دائِمًا تُراقِبُ شَبَحًا. أَنْتَ دائِمًا مُتَأَخِّرٌ
+      بِخُطْوَةٍ عن الحَدَثِ الذي تَظُنُّ نَفْسَكَ تَحْضُرُه.
+      <br><br>
+      سَمَّاه وِليَم جَيْمس <em>الحاضِرَ المَظْنون</em> — نافِذَةٌ صَغيرَة،
+      رُبَّما ثَلاثَ ثَوانٍ عَرْضًا، نَدْعُوها <em>الآن</em> وهي في الحَقيقَةِ
+      خَيالٌ مُؤَدَّبٌ اتَّفَقَت عَلَيْه الأَعْصاب.
+    </div>
+  </section>
+
+  <!-- VI. DUALITY — الدَّهْر / الوَقْت -->
+  <section class="duality">
+    <div class="duality-grid reveal">
+      <div class="duality-col">
+        <p class="tag">الدَّهْر · الزَّمَنُ المُطْلَق</p>
+        <h3>الدَّهْر</h3>
+        <p>
+          طاغِيَةُ التَّعاقُب. جابي الضَّرائِبِ الذي يَصِلُ في نَفْسِ السَّاعَةِ
+          ويُطالِبُ بالجِزْيَةِ نَفْسِها. هُوَ الذي يَضَعُ رَقْمًا على لَحْظَةِ
+          وَفاةِ أَبيك، وعلى لَحْظَةِ نُضْجِ الخُبْز، ويَدَّعي أنَّه لا فَرْقَ بَيْنَهُما.
+          لا يَعْرِفُ غَيْرَ الامْتِدادِ الذي لا يَرْحَم.
+        </p>
+      </div>
+      <div class="duality-divider"></div>
+      <div class="duality-col">
+        <p class="tag">الوَقْت · اللَّحْظَةُ المُبارَكَة</p>
+        <h3>الوَقْت</h3>
+        <p>
+          <em>اللَّحْظَةُ المُواتِيَة</em>. اللَّحْظَةُ التي لا يُمْكِنُ جَدْوَلَتُها.
+          ظَهيرَةٌ بِعَيْنِها، يَنْفَتِحُ فيها بابٌ لَمْ تَنْتَبِه إلَيْهِ من قَبْل،
+          فَتَعْبُرُه قَبْلَ أَنْ تُقَرِّرَ ذلك. <em>لا أَداةَ تَخْدُمُ الوَقْتَ</em>.
+          هو ضَيْفُ الشَّرَفِ في كُلِّ ساعَةٍ ذاتِ مَعْنًى، ويَصِلُ دائِمًا
+          بِلا ساعَةٍ في مِعْصَمِه. يَعْرِفُه الصُّوفِيَّة: «ابنُ وَقْتِه».
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EPILOGUE -->
+  <section class="epilogue">
+    <div class="ghost-layer" aria-hidden="true">
+      <div class="ghost" data-speed=".18" style="top:15%;right:10%;width:90px;height:90px;opacity:.08">
+        <svg viewBox="-150 -150 300 300" filter="url(#melt-6)"><use href="#clockface"/></svg>
+      </div>
+      <div class="ghost" data-speed=".22" style="top:18%;left:8%;width:110px;height:110px;opacity:.08">
+        <svg viewBox="-150 -150 300 300" filter="url(#melt-7)"><use href="#clockface"/></svg>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <svg class="epilogue-clock melt-clock" viewBox="-150 -150 300 300" data-melt-target="disp-5">
+        <g filter="url(#melt-5)">
+          <use href="#clockface"/>
+        </g>
+        <use href="#clockhands"/>
+      </svg>
+
+      <p class="epilogue-line">
+        السَّاعَةُ لا تَقيسُ الزَّمَن.<br>
+        <em>السَّاعَةُ تَقيسُنا.</em>
+      </p>
+
+      <div class="epilogue-credits">
+        <span class="em-bar"></span>
+        الزَّمَنُ المُلْتَبِس · ١٤٤٧هـ / ٢٠٢٦م<br>
+        عَمَلٌ تَرْكيبيٌّ لجَماعَةِ كرونوسفير<br>
+        المُجَلَّد السَّابِع من بَحْثٍ مُسْتَمِرّ<br>
+        <br>
+        <span style="opacity:.5">— نِهايَةُ البَثّ —</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(() => {
+  'use strict';
+
+  const state = {
+    scrollY: 0,
+    lastScrollY: 0,
+    velocity: 0,
+    audioOn: false,
+    audio: null,
+    prefersReduced: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  };
+
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
+  const smoothstep = (edge0, edge1, x) => {
+    const t = clamp((x - edge0) / (edge1 - edge0), 0, 1);
+    return t * t * (3 - 2 * t);
+  };
+
+  // ═══════════════ AUDIO ENGINE ═══════════════
+  class TimeSoundscape {
+    constructor() {
+      this.ctx = null;
+      this.running = false;
+      this.nextTick = 0;
+      this.schedulerHandle = null;
+      this.masterGain = null;
+      this.reverbIn = null;
+    }
+
+    async start() {
+      if (this.ctx) {
+        await this.ctx.resume();
+        this.running = true;
+        this._runScheduler();
+        return;
+      }
+      const AC = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AC();
+
+      this.masterGain = this.ctx.createGain();
+      this.masterGain.gain.value = 0;
+      this.masterGain.connect(this.ctx.destination);
+      this.masterGain.gain.linearRampToValueAtTime(0.35, this.ctx.currentTime + 2.5);
+
+      const convolver = this.ctx.createConvolver();
+      convolver.buffer = this._makeReverb(3.8, 2.2);
+      const revGain = this.ctx.createGain();
+      revGain.gain.value = 0.6;
+      convolver.connect(revGain);
+      revGain.connect(this.masterGain);
+      this.reverbIn = convolver;
+
+      this._startDrone();
+
+      this.running = true;
+      this.nextTick = this.ctx.currentTime + 0.5;
+      this._runScheduler();
+    }
+
+    async stop() {
+      if (!this.ctx) return;
+      this.running = false;
+      if (this.masterGain) {
+        const now = this.ctx.currentTime;
+        this.masterGain.gain.cancelScheduledValues(now);
+        this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, now);
+        this.masterGain.gain.linearRampToValueAtTime(0, now + 0.6);
+      }
+    }
+
+    async resume() {
+      if (!this.ctx) { await this.start(); return; }
+      await this.ctx.resume();
+      this.running = true;
+      const now = this.ctx.currentTime;
+      this.masterGain.gain.cancelScheduledValues(now);
+      this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, now);
+      this.masterGain.gain.linearRampToValueAtTime(0.35, now + 0.8);
+      this.nextTick = this.ctx.currentTime + 0.2;
+      this._runScheduler();
+    }
+
+    _makeReverb(duration, decay) {
+      const rate = this.ctx.sampleRate;
+      const length = rate * duration;
+      const impulse = this.ctx.createBuffer(2, length, rate);
+      for (let ch = 0; ch < 2; ch++) {
+        const data = impulse.getChannelData(ch);
+        for (let i = 0; i < length; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, decay);
+        }
+      }
+      return impulse;
+    }
+
+    _startDrone() {
+      // Modal drone inspired by Arabic maqam — root + fourth + neutral third feel
+      const osc1 = this.ctx.createOscillator();
+      const osc2 = this.ctx.createOscillator();
+      const osc3 = this.ctx.createOscillator();
+      const osc4 = this.ctx.createOscillator();
+      osc1.type = 'sine'; osc1.frequency.value = 55;      // root (A)
+      osc2.type = 'sine'; osc2.frequency.value = 55.35;   // detune shimmer
+      osc3.type = 'sine'; osc3.frequency.value = 73.42;   // perfect 4th (D)
+      osc4.type = 'sine'; osc4.frequency.value = 110.2;   // octave with slight detune
+
+      const dg = this.ctx.createGain();
+      dg.gain.value = 0.085;
+
+      const lp = this.ctx.createBiquadFilter();
+      lp.type = 'lowpass';
+      lp.frequency.value = 480;
+      lp.Q.value = 0.6;
+
+      const lfo = this.ctx.createOscillator();
+      const lfoGain = this.ctx.createGain();
+      lfo.frequency.value = 0.07;
+      lfoGain.gain.value = 140;
+      lfo.connect(lfoGain);
+      lfoGain.connect(lp.frequency);
+
+      osc1.connect(lp); osc2.connect(lp); osc3.connect(lp); osc4.connect(lp);
+      lp.connect(dg);
+      dg.connect(this.masterGain);
+      dg.connect(this.reverbIn);
+
+      osc1.start(); osc2.start(); osc3.start(); osc4.start(); lfo.start();
+
+      this.droneFilter = lp;
+      this.droneGain = dg;
+    }
+
+    _runScheduler() {
+      if (!this.running) return;
+      const now = this.ctx.currentTime;
+
+      const v = Math.min(Math.abs(state.velocity), 40);
+      const rate = 1 + Math.pow(v / 6, 1.6);
+      const interval = 1 / clamp(rate, 1, 14);
+
+      while (this.nextTick < now + 0.15) {
+        const tickIndex = Math.floor(this.nextTick * 2);
+        const vol = tickIndex % 2 === 0 ? 1 : 0.75;
+        this._tickAt(this.nextTick, vol);
+        this.nextTick += interval;
+      }
+
+      this.schedulerHandle = setTimeout(() => this._runScheduler(), 40);
+    }
+
+    _tickAt(time, volume) {
+      const ctx = this.ctx;
+      if (!ctx) return;
+      const bufSize = Math.floor(ctx.sampleRate * 0.06);
+      const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+      const d = buf.getChannelData(0);
+      for (let i = 0; i < bufSize; i++) {
+        d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufSize, 4);
+      }
+      const src = ctx.createBufferSource();
+      src.buffer = buf;
+
+      const bp = ctx.createBiquadFilter();
+      bp.type = 'bandpass';
+      bp.frequency.value = 2000 + Math.random() * 1600;
+      bp.Q.value = 5;
+
+      const hp = ctx.createBiquadFilter();
+      hp.type = 'highpass';
+      hp.frequency.value = 700;
+
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(0, time);
+      g.gain.linearRampToValueAtTime(0.5 * volume, time + 0.002);
+      g.gain.exponentialRampToValueAtTime(0.001, time + 0.08);
+
+      src.connect(bp);
+      bp.connect(hp);
+      hp.connect(g);
+      g.connect(this.masterGain);
+
+      const rg = ctx.createGain();
+      rg.gain.value = 0.35 * volume;
+      g.connect(rg);
+      rg.connect(this.reverbIn);
+
+      src.start(time);
+      src.stop(time + 0.12);
+    }
+  }
+
+  // ═══════════════ INTRO ═══════════════
+  const intro = document.getElementById('intro');
+  const enterBtn = document.getElementById('enterBtn');
+  const topbar = document.getElementById('topbar');
+
+  enterBtn.addEventListener('click', async () => {
+    intro.classList.add('fade');
+    topbar.classList.add('show');
+
+    state.audio = new TimeSoundscape();
+    try {
+      await state.audio.start();
+      state.audioOn = true;
+    } catch (e) {
+      console.warn('Audio failed:', e);
+    }
+  });
+
+  // ═══════════════ AUDIO TOGGLE ═══════════════
+  const audioToggle = document.getElementById('audioToggle');
+  const audioLabel = audioToggle.querySelector('.audio-label');
+  audioToggle.addEventListener('click', async () => {
+    if (!state.audio) return;
+    if (state.audioOn) {
+      await state.audio.stop();
+      state.audioOn = false;
+      audioToggle.classList.remove('on');
+      audioLabel.textContent = 'الصَّوت · مَكْتوم';
+    } else {
+      await state.audio.resume();
+      state.audioOn = true;
+      audioToggle.classList.add('on');
+      audioLabel.textContent = 'الصَّوت · مُشَغَّل';
+    }
+  });
+
+  // ═══════════════ SCROLL VELOCITY ═══════════════
+  state.lastScrollY = window.scrollY;
+  state.scrollY = window.scrollY;
+
+  function updateVelocity() {
+    const current = window.scrollY;
+    const delta = current - state.lastScrollY;
+    state.velocity = state.velocity * 0.85 + delta * 0.15;
+    state.lastScrollY = current;
+    state.scrollY = current;
+    requestAnimationFrame(updateVelocity);
+  }
+  requestAnimationFrame(updateVelocity);
+
+  // ═══════════════ MELT CLOCKS ═══════════════
+  const meltClocks = document.querySelectorAll('.melt-clock');
+  const displacements = {};
+  document.querySelectorAll('feDisplacementMap').forEach(d => {
+    displacements[d.id] = d;
+  });
+
+  function updateMelts() {
+    const viewportCenter = window.innerHeight * 0.5;
+    const maxDist = window.innerHeight * 0.9;
+
+    meltClocks.forEach(clock => {
+      const rect = clock.getBoundingClientRect();
+      const clockCenter = rect.top + rect.height * 0.5;
+      const distance = Math.abs(clockCenter - viewportCenter);
+      const proximity = clamp(1 - distance / maxDist, 0, 1);
+
+      const melted = Math.pow(proximity, 1.3) * 28;
+      const velBoost = clamp(Math.abs(state.velocity) * 0.5, 0, 16);
+      const total = melted + velBoost * proximity;
+
+      const target = clock.dataset.meltTarget;
+      if (target && displacements[target]) {
+        displacements[target].setAttribute('scale', total.toFixed(2));
+      }
+    });
+
+    requestAnimationFrame(updateMelts);
+  }
+  requestAnimationFrame(updateMelts);
+
+  // ═══════════════ PARALLAX ═══════════════
+  const ghosts = document.querySelectorAll('.ghost');
+  function updateParallax() {
+    ghosts.forEach(g => {
+      const rect = g.parentElement.getBoundingClientRect();
+      const speed = parseFloat(g.dataset.speed || 0.2);
+      const offset = -rect.top * speed;
+      g.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0) rotate(${(offset * 0.05).toFixed(2)}deg)`;
+    });
+    requestAnimationFrame(updateParallax);
+  }
+  requestAnimationFrame(updateParallax);
+
+  // ═══════════════ STRETCHING TYPOGRAPHY — KASHIDA-style (horizontal) ═══════════════
+  const dureeSection = document.getElementById('dureeSection');
+  const stretchWord = document.getElementById('stretchWord');
+
+  function updateStretch() {
+    if (!dureeSection || !stretchWord) return;
+    const rect = dureeSection.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const progress = 1 - (rect.top + rect.height * 0.5) / vh;
+    // Stretch horizontally — kashida inspiration
+    const peak = smoothstep(0, 1, 1 - Math.abs(progress));
+    const stretchX = 1 + peak * 2.2;
+    const skew = progress * 4;
+    stretchWord.style.transform = `scaleX(${stretchX.toFixed(3)}) skewX(${skew.toFixed(2)}deg)`;
+    requestAnimationFrame(updateStretch);
+  }
+  requestAnimationFrame(updateStretch);
+
+  // ═══════════════ NOW WORD ═══════════════
+  const nowSection = document.getElementById('nowSection');
+  const nowWord = document.getElementById('nowWord');
+
+  function updateNow() {
+    if (!nowSection || !nowWord) return;
+    const rect = nowSection.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const progress = 1 - (rect.top + rect.height * 0.5) / vh;
+    const peak = smoothstep(0, 1, 1 - Math.abs(progress));
+    const offset = Math.sin(state.scrollY * 0.002) * 0.3;
+    const stretchX = 1 + peak * (2.5 + offset);
+    const rot = Math.sin(state.scrollY * 0.001) * peak * 2;
+    nowWord.style.transform = `scaleX(${stretchX.toFixed(3)}) rotate(${rot.toFixed(2)}deg)`;
+    requestAnimationFrame(updateNow);
+  }
+  requestAnimationFrame(updateNow);
+
+  // ═══════════════ REVEAL ═══════════════
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('on');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  const memObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const siblings = Array.from(e.target.parentElement.children);
+        const idx = siblings.indexOf(e.target);
+        setTimeout(() => e.target.classList.add('on'), idx * 180);
+        memObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.memory-frag').forEach(el => memObserver.observe(el));
+
+  // ═══════════════ PROGRESS ═══════════════
+  const progressEl = document.getElementById('progress');
+  function updateProgress() {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = scrollable > 0 ? (state.scrollY / scrollable) * 100 : 0;
+    progressEl.style.width = pct + '%';
+    requestAnimationFrame(updateProgress);
+  }
+  requestAnimationFrame(updateProgress);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'm' || e.key === 'M') audioToggle.click();
+  });
+
+  document.addEventListener('visibilitychange', async () => {
+    if (!state.audio) return;
+    if (document.hidden) {
+      if (state.audioOn) await state.audio.stop();
+    } else {
+      if (state.audioOn) await state.audio.resume();
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
